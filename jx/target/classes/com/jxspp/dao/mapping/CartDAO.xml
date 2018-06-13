@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jxspp.dao.CartDAO">
+	<insert id="addCart">
+		insert into t_cart(userName,productId,num,status) values(#{userName},#{productId},#{num},0)
+	</insert>
+	<select id="searchProductId" resultType="java.lang.Integer">
+		select productId from t_cart where userName=#{userName} and status=0
+	</select>
+	<delete id="deleteCart">
+		delete from t_cart where userName=#{userName} AND productId=#{productId}
+	</delete>
+	<update id="updateStatus">
+		update t_cart set status=#{status} where userName=#{userName}
+	</update>
+	<select id="searchProductByStatus" resultType="java.lang.Integer">
+		select productId from t_cart where userName=#{userName} and status=#{status}
+	</select>
+</mapper>

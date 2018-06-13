@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jxspp.dao.ProductDAO">
+	<select id="searchProducts" resultType="com.jxspp.model.person.Product">
+		SELECT *
+		FROM t_product
+	</select>
+	
+	<select id="searchProductsByType" resultType="com.jxspp.model.person.Product">
+		SELECT *
+		FROM t_product
+		WHERE type=#{type}
+	</select>
+	
+	<select id="searchProductById" resultType="com.jxspp.model.person.Product">
+		SELECT *
+		FROM t_product
+		WHERE id=#{id}
+	</select>
+	
+	<select id="searchProductByName" resultType="com.jxspp.model.person.Product">
+		SELECT *
+		FROM t_product
+		WHERE productName like concat(concat('%',#{productName}),'%')
+	</select>
+	
+	<select id="searchProductComment" resultType="com.jxspp.model.person.ProductComment">
+		SELECT *
+		FROM t_product_comment
+		WHERE productId=#{productId}
+	</select>
+</mapper>

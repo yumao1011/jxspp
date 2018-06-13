@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jxspp.dao.UserDetailDAO">
+	<!-- 查询用户信息列表 -->
+	<select id="getUserDetailByUsername" resultType="com.jxspp.model.person.UserDetail"
+		parameterType="java.util.Map">
+		SELECT *
+		FROM t_user_detail
+		WHERE userName=#{userName}
+	</select>
+
+	<!-- 新增用户信息列表 -->
+	<insert id="createUserDetail">
+		INSERT
+		INTO t_user_detail
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="userDetail.id != null">
+				id,
+			</if>
+			<if test="userDetail.userName != null">
+				userName,
+			</if>
+			<if test="userDetail.nickName != null">
+				nickName,
+			</if>
+			<if test="userDetail.sex != null">
+				sex,
+			</if>
+			<if test="userDetail.phone != null">
+				phone,
+			</if>
+			<if test="userDetail.email != null">
+				email,
+			</if>
+			<if test="userDetail.name != null">
+				name,
+			</if>
+			<if test="userDetail.birthday != null">
+				birthday
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="userDetail.id != null">
+				#{userDetail.id},
+			</if>
+			<if test="userDetail.userName != null">
+				#{userDetail.userName},
+			</if>
+			<if test="userDetail.nickName != null">
+				#{userDetail.nickName},
+			</if>
+			<if test="userDetail.sex != null">
+				#{userDetail.sex},
+			</if>
+			<if test="userDetail.phone != null">
+				#{userDetail.phone},
+			</if>
+			<if test="userDetail.email != null">
+				#{userDetail.email},
+			</if>
+			<if test="userDetail.name != null">
+				#{userDetail.name},
+			</if>
+			<if test="userDetail.birthday != null">
+				#{userDetail.birthday}
+			</if>
+		</trim>
+	</insert>
+
+	<!-- 修改用户信息列表 -->
+	<update id="updateUserDetail">
+		UPDATE t_user_detail
+		SET
+		<trim suffixOverrides=",">
+			<if test="userDetail.nickName != null">
+				nickName=#{userDetail.nickName},
+			</if>
+			<if test="userDetail.sex != null">
+				sex=#{userDetail.sex},
+			</if>
+			<if test="userDetail.phone != null">
+				phone=#{userDetail.phone},
+			</if>
+			<if test="userDetail.email != null">
+				email=#{userDetail.email},
+			</if>
+			<if test="userDetail.name != null">
+				name=#{userDetail.name},
+			</if>
+			<if test="userDetail.birthday != null">
+				birthday=#{userDetail.birthday}
+			</if>
+		</trim>
+		WHERE
+		userName=#{userDetail.userName}
+	</update>
+</mapper>

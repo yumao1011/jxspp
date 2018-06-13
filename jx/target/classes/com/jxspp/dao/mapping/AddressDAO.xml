@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jxspp.dao.AddressDAO">
+	<select id="searchAddress" resultType="com.jxspp.model.person.Address">
+		SELECT *
+		FROM t_user_address
+		WHERE userName=#{userName}
+	</select>
+	
+	<insert id="addAddress" parameterType="com.jxspp.model.person.Address">
+		INSERT INTO t_user_address(userName,name,phone,province,city,district,fullAddress)
+		VALUES(#{userName},#{name},#{phone},#{province},#{city},#{district},#{fullAddress})
+	</insert>
+	
+	<delete id="deleteAddress">
+		DELETE 
+		FROM t_user_address
+		WHERE userName=#{userName} AND id=#{id}
+	</delete>
+</mapper>
